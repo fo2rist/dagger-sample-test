@@ -2,6 +2,7 @@ package daggersampletests.fo2rist.github.com.daggersampletests
 
 import daggersampletests.fo2rist.github.com.daggersampletests.singletonprovider.DaggerSingletonProvidingComponent
 import daggersampletests.fo2rist.github.com.daggersampletests.singletonprovider.SingletonProviderDemo
+import daggersampletests.fo2rist.github.com.daggersampletests.util.printObjectProperties
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -17,30 +18,18 @@ class SingletonProviderTest {
     @Test
     fun `test unscoped and singleton scoped dependencies injection`() {
         testComponent1.inject(demo1)
-        printInstanceMembers(demo1, "1st injection")
+        printObjectProperties(demo1, "1st injection")
 
         //show how scoped dependencies cached by component
         testComponent1.inject(demo1)
-        printInstanceMembers(demo1, "2nd injection via same Component")
+        printObjectProperties(demo1, "2nd injection via same Component")
 
         //show how singleton is component-local
         testComponent2.inject(demo1)
-        printInstanceMembers(demo1, "Injection via new Component")
+        printObjectProperties(demo1, "Injection via new Component")
 
         //show how component is object-agnostic and works the same way with any objects
         testComponent2.inject(demo2)
-        printInstanceMembers(demo2, "Injection into new Object via new Component")
-    }
-
-    private fun printInstanceMembers(demoInstance: SingletonProviderDemo, title: String = "") {
-        System.out.println("\n" + title)
-        System.out.println(listOf(
-                demoInstance.unscoped,
-                demoInstance.unscopedBound,
-                demoInstance.singleton,
-                demoInstance.singletonBound,
-                demoInstance.providedAsSingleton,
-                demoInstance.singletonProvidedAsSingleton
-        ).joinToString("\n"))
+        printObjectProperties(demo2, "Injection into new Object via new Component")
     }
 }
