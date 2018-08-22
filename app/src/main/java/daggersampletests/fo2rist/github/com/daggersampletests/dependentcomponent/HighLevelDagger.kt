@@ -8,7 +8,6 @@ import javax.inject.Scope
 /**
  * Custom scope that serves as the marker for components that want to depend on other scoped components.
  */
-@Retention
 @Scope
 annotation class HighLevelScope
 
