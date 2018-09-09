@@ -6,7 +6,7 @@ import dagger.Module
 import javax.inject.Scope
 
 /**
- * Custom scope that serves as the marker for components that want to depend on other scoped components.
+ * Custom scope for components that want to depend on other scoped components.
  */
 @Scope
 annotation class HighLevelScope
